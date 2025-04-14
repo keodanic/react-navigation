@@ -8,7 +8,7 @@ const Home = () => {
       <Text>
         Home
       </Text>
-      <Button title="Go Back" onPress={() => goBack()} />
+      <Button title="Voltar" onPress={() => goBack()} />
     </View>
    );
 }
