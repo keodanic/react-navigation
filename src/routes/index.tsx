@@ -1,29 +1,16 @@
-import {NavigationContainer} from "@react-navigation/native"
-import {createNativeStackNavigator, NativeStackNavigationProp} from "@react-navigation/native-stack"
-import Home from "../screens/Home";
-import Login from "../screens/Login";
+import { NavigationContainer } from '@react-navigation/native';
+import PublicRoutes from './publicRoutes';
+import PrivateRoutes from './privateRoutes';
+import { useAuth } from '../hooks/auth';
 
-type CreateRoutesProps={
-  Login:undefined,
-  Home:undefined
-}
-
-const {Navigator, Screen}= createNativeStackNavigator<CreateRoutesProps>()
-
-export type CreateRoutes=NativeStackNavigationProp<CreateRoutesProps>;
 
 const Routes = () => {
-  return ( 
+  const {user} = useAuth()
+  return (
     <NavigationContainer>
-      <Navigator
-      screenOptions={{
-        headerShown: false
-      }}>
-        <Screen name="Login" component={Login} />
-        <Screen name="Home" component={Home} />
-      </Navigator>
+      {user?.accessToken ? <PrivateRoutes /> : <PublicRoutes />}
     </NavigationContainer>
-   );
-}
- 
+  );
+};
+
 export default Routes;

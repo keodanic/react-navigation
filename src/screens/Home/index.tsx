@@ -1,14 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import { Button, StyleSheet, Text, View } from "react-native";
-
+import { useAuth } from "../../hooks/auth";
+import Products from "../../components/products";
 const Home = () => {
   const {goBack}=useNavigation()
+  const {logout} = useAuth()
   return ( 
     <View style={styles.container}> 
-      <Text>
-        Home
-      </Text>
-      <Button title="Voltar" onPress={() => goBack()} />
+      <Products/>
+      <Button title="LogOut" color={"#252525"} onPress={() => logout()} />
     </View>
    );
 }
